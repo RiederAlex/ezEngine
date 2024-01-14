@@ -16,6 +16,7 @@ public:
   ~ezRmlUiDocumentContext();
 
   const ezRmlUiResourceHandle& GetResource() const { return m_hMainResource; }
+  virtual void HandleMessage(const ezEditorEngineDocumentMsg* pMsg) override;
 
 protected:
   virtual void OnInitialize() override;
