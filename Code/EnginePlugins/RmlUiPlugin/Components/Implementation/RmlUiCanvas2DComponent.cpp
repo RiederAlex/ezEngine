@@ -113,7 +113,7 @@ void ezRmlUiCanvas2DComponent::Update()
 
   m_pContext->SetDpiScale(fScale);
 
-  if (m_bPassInput && GetWorld()->GetWorldSimulationEnabled())
+  if (m_bPassInput && GetWorld()->GetWorldSimulationEnabled() || true)
   {
     ezVec2 mousePos;
     ezInputManager::GetInputSlotState(ezInputSlot_MousePositionX, &mousePos.x);
