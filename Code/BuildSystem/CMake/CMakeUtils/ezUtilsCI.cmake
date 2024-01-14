@@ -1,7 +1,6 @@
 # #####################################
 # ## ez_ci_add_to_targets_list(<target> [C++])
 # #####################################
-
 function(ez_ci_add_to_targets_list TARGET_NAME LANGUAGE)
 	if(EZ_NO_TXT_FILES)
 		return()
@@ -38,4 +37,7 @@ function(ez_ci_add_test TARGET_NAME)
 	endif()
 
 	file(APPEND ${CMAKE_BINARY_DIR}/Tests.txt "${TARGET_NAME}|${HWA_VALUE}|0\n")
+
+	add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -nosave -nogui -all)
+
 endfunction()
