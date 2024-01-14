@@ -45,6 +45,7 @@ if(NOT EZ_SUBMODULE_MODE)
 endif()
 
 include("ezPlatform")
+include(CTest)
 
 ez_set_build_types()
 ez_check_build_type()
