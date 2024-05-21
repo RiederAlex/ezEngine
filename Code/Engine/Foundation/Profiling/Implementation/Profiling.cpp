@@ -13,6 +13,13 @@
 
 #if EZ_ENABLED(EZ_USE_PROFILING)
 
+
+//ENGINE_MOD a.rieder Support for Superluminal
+#ifdef SUPERLUMINAL_ENABLE
+#include <Superluminal/PerformanceAPI.h>
+#endif
+//ENGINE_MOD
+
 class ezProfileCaptureDataTransfer : public ezDataTransfer
 {
 private:
@@ -854,11 +861,18 @@ ezProfilingScope::ezProfilingScope(ezStringView sName, const char* szFunctionNam
   , m_BeginTime(ezTime::Now())
   , m_Timeout(timeout)
 {
+#ifdef SUPERLUMINAL_ENABLE
+  PerformanceAPI::BeginEvent(sName.GetStartPointer()); //ScopeName, EZ_SOURCE_FUNCTION
+#endif
 }
 
 ezProfilingScope::~ezProfilingScope()
 {
   ezProfilingSystem::AddCPUScope(m_sName, m_szFunction, m_BeginTime, ezTime::Now(), m_Timeout);
+
+#ifdef SUPERLUMINAL_ENABLE
+  PerformanceAPI::EndEvent(); //ScopeName, EZ_SOURCE_FUNCTION
+#endif
 }
 
 //////////////////////////////////////////////////////////////////////////

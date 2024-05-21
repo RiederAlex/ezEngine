@@ -76,3 +76,11 @@ if(EZ_3RDPARTY_TRACY_SUPPORT)
   # Tracy has to be linked to all possible targets since it is a multi dll project.
   target_link_libraries(${PROJECT_NAME} PUBLIC TracyClient)
 endif()
+
+# ENGINE_MOD a.rieder Add Superluminal support
+if(EXISTS "C:/Program Files/Superluminal/Performance/API" AND NOT "${CMAKE_BUILD_TYPE}" STREQUAL "Shipping" AND EZ_CMAKE_PLATFORM_WINDOWS_DESKTOP)
+  target_link_libraries(${PROJECT_NAME} PRIVATE "C:/Program Files/Superluminal/Performance/API/lib/x64/PerformanceAPI_MD$<$<CONFIG:Debug>:d>.lib")
+  target_include_directories(${PROJECT_NAME} PRIVATE "C:/Program Files/Superluminal/Performance/API/include")
+  target_compile_definitions(${PROJECT_NAME} PRIVATE SUPERLUMINAL_ENABLE)
+endif()
+# ENGINE_MOD
